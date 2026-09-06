@@ -53,6 +53,7 @@ const ItemList = ({
             <option value="ACTIVE">Active</option>
             <option value="SAFE">Safe</option>
             <option value="LOST">Lost</option>
+            <option value="RECOVERED">Recovered</option>
           </select>
 
           {/* Sort Field */}

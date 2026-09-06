@@ -56,7 +56,125 @@ function Dashboard() {
 
   return (
     <MainLayout username={user?.displayName || "User"}>
-      <div className="px-0">
+      
+        {/* Dashboard navigation */}
+        <div className="container py-4">
+
+    <h2 className="text-white fw-bold mb-4">
+        Dashboard
+    </h2>
+
+    <div className="row g-3 mb-4">
+
+      <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
+
+        <div>
+          <h2
+          className="text-white fw-bold my-2"
+          style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
+          >
+            My Profile
+          </h2>
+
+    <p className="text-white-50 mb-0">
+      View and update your personal information.
+    </p>
+        </div>
+
+  <CustomButton
+    variant="secondary"
+    onClick={() => navigate("/profile")}
+    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
+  >
+    <i className="bi bi-pencil"></i>
+
+    <span className="d-none d-sm-inline fw-semibold">
+      Edit Profile
+    </span>
+  </CustomButton>
+
+</div>
+
+    <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
+  <div>
+    <h2
+      className="text-white fw-bold my-2"
+      style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
+    >
+      My Group
+    </h2>
+
+    <p className="text-white-50 mb-0">
+      Manage shared item groups.
+    </p>
+  </div>
+
+  <CustomButton
+    variant="secondary"
+    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
+  >
+    <i className="bi bi-people"></i>
+
+    <span className="d-none d-sm-inline fw-semibold">
+      Manage Group
+    </span>
+  </CustomButton>
+</div>
+
+    <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
+  <div>
+    <h2
+      className="text-white fw-bold my-2"
+      style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
+    >
+      Finder Reports
+    </h2>
+
+    <p className="text-white-50 mb-0">
+      Review reports submitted for your items.
+    </p>
+  </div>
+
+  <CustomButton
+    variant="secondary"
+    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
+  >
+    <i className="bi bi-file-earmark-text"></i>
+
+    <span className="d-none d-sm-inline fw-semibold">
+      View Reports
+    </span>
+  </CustomButton>
+</div>
+
+    <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
+  <div>
+    <h2
+      className="text-white fw-bold my-2"
+      style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
+    >
+      Item History
+    </h2>
+
+    <p className="text-white-50 mb-0">
+      View recovered and archived items.
+    </p>
+  </div>
+
+  <CustomButton
+    variant="secondary"
+    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
+  >
+    <i className="bi bi-clock-history"></i>
+
+    <span className="d-none d-sm-inline fw-semibold">
+      View History
+    </span>
+  </CustomButton>
+</div>
+</div>
+
+
         {itemsLoading ? (
           <LoadingSpinner />
         ) : !items || items.length === 0 ? (

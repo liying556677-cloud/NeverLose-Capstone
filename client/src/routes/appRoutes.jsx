@@ -1,3 +1,4 @@
+import ProfilePage from "../pages/ProfilePage";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -38,6 +39,7 @@ const AppRoutes = () => {
       {/* private routes */}
       {/* <PrivateRoute>Wrap it when backend is completely done</PrivateRoute> */}
       <Route path="/" element={<DashboardPage />} />
+      <Route path="/profile" element={<ProfilePage />} />
       <Route path="/create-item" element={<CreateItemPage />} />
       <Route path="/label/:itemId" element={<QRCodePage />} />
       <Route path="/item-details/:id" element={<ItemDetailsPage />} />

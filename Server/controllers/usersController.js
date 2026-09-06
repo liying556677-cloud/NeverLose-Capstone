@@ -59,8 +59,35 @@ async function getCurrentUser(req, res) {
   }
 }
 
+/**
+ * PUT /api/users/me
+ */
+async function updateCurrentUser(req, res) {
+  try {
+    const { name, phone, contactPreference } = req.body;
+
+    const updatedUser = await userService.updateUserProfile(
+      req.user.uid,
+      {
+        name,
+        phone,
+        contactPreference,
+      }
+    );
+
+    res.json(updatedUser);
+  } catch (err) {
+    console.error("Update user error:", err);
+
+    res.status(500).json({
+      error: err.message || "UPDATE_USER_FAILED",
+    });
+  }
+}
+
 module.exports = {
   signup,
   login,
   getCurrentUser,
+  updateCurrentUser,
 };
