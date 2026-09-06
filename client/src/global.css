@@ -1,0 +1,261 @@
+/* 1. FONT IMPORTS */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=Inter:wght@400;500;600&display=swap");
+
+/* 2. VARIABLE DEFINITIONS */
+:root {
+  /* Brand Colors */
+  --nl-dark-navy: #051533;
+  --nl-deep-blue: #092079;
+  --nl-tech-blue: rgb(12, 109, 255); /* main action color CTA */
+  --nl-soft-gray: #e8e9eb;
+  --nl-light-bg: #f7f8f8;
+  --nl-white: #ffffff;
+
+  /* Accent Colors (Status, Alerts, Icons) */
+  --nl-success: #95fea1;
+  --nl-warning: #ffb56b;
+  --nl-info: #8ae1ea;
+  --nl-danger: #ea8a8a;
+
+  /* Typography */
+  --font-titles: "Plus Jakarta Sans", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Card Shadows */
+  --shadow-sm: 0 2px 4px rgba(5, 21, 51, 0.05);
+  --shadow-md: 0 4px 12px rgba(5, 21, 51, 0.08);
+}
+
+/* 3. BASE STYLES */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--nl-dark-navy);
+
+  /* MAIN GLOBAL BACKGROUND */
+  background-image: url("./assets/nl-bg2.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-color: var(--nl-light-bg);
+}
+
+/* 4. TYPOGRAPHY GLOBAL HIERARCHY */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-titles);
+  font-weight: 700;
+  color: var(--nl-dark-navy);
+  letter-spacing: -0.02em;
+}
+
+p {
+  line-height: 1.6;
+  color: #4a5568;
+}
+
+/* Wrong button */
+.btn-primary {
+  background-color: #ffb56b !important;
+  border-color: var(--nl-tech-blue) !important;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 10px 24px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #95fea1 !important;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-md);
+}
+
+.nl-icon-box {
+  border-radius: 16px !important;
+  background-color: var(--nl-deep-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 16px rgba(5, 21, 51, 0.2);
+}
+
+/* 6. UTILITY CLASSES */
+.text-brand-gradient {
+  background: linear-gradient(90deg, var(--nl-deep-blue), var(--nl-tech-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-soft-success {
+  background-color: rgba(149, 254, 161, 0.2);
+}
+.bg-soft-danger {
+  background-color: rgba(234, 138, 138, 0.2);
+}
+
+/* --- IMAGE ANIMATION --- */
+.animate__fadeIn {
+  --animate-duration: 0.6s;
+}
+
+/* --- INPUTS STANDARD --- */
+.form-control {
+  background-color: var(--nl-light-bg) !important;
+  border: 1px solid #eceef0 !important;
+  border-radius: 16px !important;
+  font-family: var(--font-body);
+  padding: 0.6rem 1.25rem !important;
+  color: var(--nl-dark-navy) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* box-shadow: var(--shadow-sm) !important; */
+}
+
+.form-control::placeholder {
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+.form-control:focus {
+  background-color: var(--nl-white) !important;
+  border-color: var(--nl-tech-blue) !important;
+  box-shadow: 0 10px 20px rgba(12, 109, 255, 0.1) !important;
+  transform: translateY(-1px);
+  outline: 0;
+}
+
+textarea.form-control {
+  min-height: 120px;
+  resize: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0px 1000px var(--nl-light-bg) inset !important;
+  -webkit-text-fill-color: var(--nl-dark-navy) !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* --- SELECT / DROPDOWN STANDARD --- */
+.form-select {
+  background-color: var(--nl-light-bg) !important;
+  border: 1px solid #eceef0 !important;
+  border-radius: 16px !important;
+  font-family: var(--font-body);
+  padding: 0.75rem 1rem !important;
+
+  padding-right: 1.8rem !important;
+  background-position: right 0.75rem center !important;
+
+  color: var(--nl-dark-navy) !important;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.form-select:focus {
+  background-color: var(--nl-white) !important;
+  border-color: var(--nl-tech-blue) !important;
+  box-shadow: 0 10px 20px rgba(12, 109, 255, 0.1) !important;
+  transform: translateY(-1px);
+  outline: 0;
+}
+
+/* --- UPLOAD IMAGE STANDARD --- */
+
+.nl-upload-zone {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  background-color: var(--nl-light-bg);
+  border: 2px dashed var(--nl-soft-gray);
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.nl-upload-zone:hover {
+  border-color: var(--nl-tech-blue);
+  background-color: #fff;
+  transform: scale(1.01);
+}
+
+.nl-upload-zone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.nl-upload-zone:hover img {
+  transform: scale(1.005);
+}
+
+/* error message fade in / out */
+.nl-animated-fade {
+  color: var(--nl-danger);
+  font-size: 0.85rem;
+  font-weight: 600;
+  animation: fadeInDown 0.3s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover button < back */
+.opacity-hover {
+  transition: opacity 0.2s ease-in-out;
+}
+
+.opacity-hover:hover {
+  opacity: 0.75 !important;
+  cursor: pointer;
+}
+
+/* --- STATUS INDICATORS --- */
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-dot.safe,
+.status-dot.active {
+  background-color: var(--nl-success);
+}
+
+.status-dot.closed {
+  background-color: var(--nl-warning);
+}
+
+.status-dot.lost {
+  background-color: var(--nl-danger);
+}

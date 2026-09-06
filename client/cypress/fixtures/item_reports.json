@@ -1,0 +1,11 @@
+[
+  {
+    "id": "REPORT_123",
+    "itemId": "3Oue3EYt3nc1wdEi0MJV",
+    "reportStatus": "NEW",
+    "internalStatus": "OPEN",
+    "message": "Found your laptop near the cafe!",
+    "finderEmail": "finder@example.com",
+    "createdAt": "2026-03-25T19:57:00Z"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "reports": [
+    {
+      "id": "r1",
+      "status": "NEW",
+      "message": "sdfdsf sdf sdf",
+      "finder": {
+        "email": "sdf@sdf.com"
+      },
+      "createdAt": "2026-03-25T19:57:00.000Z"
+    }
+  ]
+}

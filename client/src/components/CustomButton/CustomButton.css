@@ -1,0 +1,91 @@
+/* Primary button (blue theme used across app)  */
+.btn-blue {
+  border: 2px solid var(--nl-tech-blue);
+  border-radius: 12px !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--nl-tech-blue) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+}
+/* Hover effect for primary button  */
+.btn-blue:hover {
+  background-color: rgba(44, 130, 255) !important;
+  border: 2px solid rgba(3, 66, 161, 0.4) !important;
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.3);
+}
+/* Danger button (used for delete actions) */
+.btn-red {
+  border: 2px solid var(--nl-danger) !important;
+  border-radius: 12px !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--nl-danger) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(220, 53, 69, 0.2);
+}
+/* Hover effect for danger button */
+.btn-red:hover {
+  background-color: var(--nl-danger) !important;
+  border: 2px solid rgba(206, 44, 60, 0.4) !important;
+  transform: scale(1.02);
+  box-shadow: 0 6px 15px rgba(220, 53, 69, 0.2);
+}
+/* Outline style button (used for secondary/light actions) */
+.btn-outline-blue {
+  background-color: transparent !important;
+  border: 3px solid rgba(0, 123, 255, 0.9) !important;
+  color: rgba(4, 96, 194, 0.9) !important;
+  border-radius: 12px !important;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Hover effect for outline button */
+.btn-outline-blue:hover {
+  background-color: rgba(0, 209, 255, 0.08) !important;
+  border: 2px solid rgba(0, 123, 255, 0.9) !important;
+  transform: scale(1.02);
+  color: rgba(4, 96, 194, 0.9) !important;
+  box-shadow: 0 6px 15px rgba(0, 123, 255, 0.1);
+}
+/* Disabled state (applies to all custom buttons)  */
+.custom-btn:disabled {
+  background-color: var(--nl-tech-blue) !important;
+  color: #ffffff !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+  opacity: 0.6;
+}
+
+/* Mobile responsiveness for primary & danger buttons  */
+@media (max-width: 575.98px) {
+  .btn-blue,
+  .btn-red {
+    padding: 6px 16px !important;
+    font-size: 0.85rem !important;
+    border-radius: 12px !important;
+  }
+}
+/* Mobile responsiveness for outline button  */
+@media (max-width: 575.98px) {
+  .btn-outline-blue {
+    padding: 6px 16px !important;
+    font-size: 0.85rem !important;
+    border-radius: 12px !important;
+    border-width: 1px !important;
+  }
+}

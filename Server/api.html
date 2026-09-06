@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeverLose REST API</title>
+<link rel="stylesheet" href="api.css">  
+</head>
+
+<body>
+
+  <h1>NEVERLOSE REST API</h1>
+  <p>This API allows you to signup users, do CRUD operations on items. Finders can report the lost item and owners can 
+    change item status using Firestore Database.</p>
+
+  <div class="section">
+    <h2>Available Endpoints</h2>
+
+    <div class="endpoints">
+      <h3>Users</h3>
+      <ul>
+        <li>GET api/user/me - Get logged in user</li>       
+        <li>POST api/user/signup - Signup a new user</li>
+        <li>POST api/user/login - logs in a user</li>
+      </ul>
+    </div>
+
+    <div class="endpoints">
+      <h3>Items</h3>
+      <ul>
+        <li>POST api/items/ - Create item for a user</li>       
+        <li>PUT api/items/:itemId - Update the item by ID</li>
+        <li>GET api/items/ - Get items for users</li>
+        <li>Get api/items/owner/:itemId - Get item details by ID for owner</li>
+        <li>DELETE api/items/:itemId - Delete income entry</li>
+      </ul>
+    </div>
+
+    <div class="endpoints">
+      <h3>Public</h3>
+      <ul>
+        <li>GET api/public/items/:token - Get only few item details for public by token</li>
+        <li>CREATE api/public//items/:token/found/ - Create a found report for an item by finder</li>        
+      </ul>
+    </div>
+
+    <div class="endpoints">
+      <h3>Reports</h3>
+      <ul>
+        <li>GET api/reports/item/:itemId - Get reports for items</li>
+        <li>PATCH api/reports/:reportId - Update the ststus of the report</li>        
+      </ul>
+    </div>
+    <div class="endpoints">
+      <h3>Labels</h3>
+      <ul>
+        <li>GET api/labels/:itemId/pdf - Generate PDF label by item id.</li>            
+      </ul>
+    </div>
+
+    <div class="endpoints">
+      <h3>Upload</h3>
+      <ul>
+        <li>POST api/upload/photo - Upload the photo</li>            
+      </ul>
+    </div>  
+
+    <div class="endpoints">
+      <h3>Logs</h3>
+      <ul>
+        <li>GET api/logs/item/:itemId - Get the item logs by ids</li>            
+      </ul>
+    </div>
+  </div>
+  <div class="footer">
+    © 2026 NEVERLOSE
+  </div>
+
+</body>
+</html>

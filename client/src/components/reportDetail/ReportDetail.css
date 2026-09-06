@@ -1,0 +1,87 @@
+/* Layout Helpers */
+.min-w-150 {
+  min-width: 150px;
+}
+.ls-wide {
+  letter-spacing: 0.05rem;
+}
+.extra-small {
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+.italic {
+  font-style: italic;
+}
+
+.status-divider {
+  height: 3px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.evidence-icon-box {
+  background-color: var(--nl-deep-blue);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Button Base Style */
+.manage-btn {
+  background-color: var(--nl-deep-blue) !important;
+  border-radius: 16px;
+  padding: 12px;
+  border: 2px solid transparent !important;
+  font-size: 1.1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover Effect */
+.manage-btn:hover:not(:disabled) {
+  filter: brightness(1.3);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(26, 54, 141, 0.4);
+}
+
+/* Active State (Glow) */
+.manage-btn.active-status {
+  border-color: currentColor !important;
+  box-shadow: 0 0 12px currentColor;
+  filter: brightness(1.1);
+}
+
+/* Disabled/Locked State */
+.manage-btn:disabled,
+.manage-btn.disabled-fade {
+  opacity: 0.25;
+  filter: grayscale(1);
+  cursor: not-allowed;
+  transform: scale(0.97);
+}
+
+/* Action wrapper ensures the span doesn't disrupt button width */
+.action-wrapper span.d-block {
+  width: 100%;
+}
+
+.disabled-fade {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(0.5);
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 16px;
+  border-radius: 32px;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  margin-right: 12px;
+  margin-bottom: 8px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 10px -2px rgba(0, 0, 0, 0.1);
+}

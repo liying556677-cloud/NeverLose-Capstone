@@ -1,0 +1,13 @@
+{
+  "events": [
+    {
+      "id": "evt1",
+      "type": "FOUND_REPORT_CREATED",
+      "timestamp": "2026-03-25T19:57:00.000Z",
+      "details": {
+        "reportId": "3Oue3EYt3nc1wdEi0MJV",
+        "finderEmail": "sdf@sdf.com"
+      }
+    }
+  ]
+}

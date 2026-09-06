@@ -1,0 +1,76 @@
+/* Smooth transition for navbar animations (hover, scroll effects) */
+.navbar {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+/* Constrains navbar width for inner pages (centered layout) */
+.navbar-contained {
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+}
+/* Full-width navbar  */
+.navbar-full-width {
+  max-width: none !important;
+
+  width: calc(100% - 3rem) !important;
+  margin-left: 1.5rem !important;
+  margin-right: 1.5rem !important;
+}
+/* Custom navigation link  */
+.nav-link-custom {
+  background: none;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--nl-deep-blue);
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+/* Hover color change for navigation links */
+.nav-link-custom:hover {
+  background-color: rgba(0, 209, 255, 0.08);
+  color: var(--nl-tech-blue);
+  transform: translateY(-1px);
+}
+/* Wrapper ensures navbar stays centered and above other elements  */
+.nav-wrapper {
+  position: relative;
+  z-index: 1020;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+/* Sticky navbar positioning (sticks to top while scrolling)  */
+.sticky-nav {
+  position: sticky;
+  top: 1rem;
+}
+/* Standard contained layout width */
+.navbar-contained {
+  max-width: 1300px;
+  width: 100%;
+}
+/* Landing page layout (full width) */
+.navbar-landing {
+  width: 100%;
+}
+
+.navbar-logo {
+  height: 37px;
+  width: auto;
+  transition: height 0.3s ease;
+}
+
+@media (max-width: 767.98px) {
+  .navbar-logo {
+    height: 30px;
+  }
+}
