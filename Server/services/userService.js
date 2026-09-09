@@ -80,4 +80,31 @@ exports.userService = {
     const doc = await db.collection(COLLECTION).doc(uid).get();
     return doc.exists ? doc.data() : null;
   },
+  
+  async updateUserProfile(uid, updates) {
+  if (!uid) {
+    throw new Error("UID is required");
+  }
+
+  const allowedUpdates = {
+    name: updates.name?.trim(),
+    phone: updates.phone?.trim(),
+    contactPreference: updates.contactPreference,
+    updatedAt: new Date().toISOString(),
+  };
+
+  // Remove undefined values so existing fields are not overwritten accidentally
+  Object.keys(allowedUpdates).forEach((key) => {
+    if (allowedUpdates[key] === undefined) {
+      delete allowedUpdates[key];
+    }
+  });
+
+  await db
+    .collection(COLLECTION)
+    .doc(uid)
+    .update(allowedUpdates);
+
+  return this.getUserProfile(uid);
+},
 };

@@ -122,6 +122,7 @@ const EditItemComponent = ({ item }) => {
                     <option value="SAFE">Safe</option>
                     <option value="LOST">Lost</option>
                     <option value="CLOSED">Closed</option>
+                    <option value="RECOVERED">Recovered</option>
                   </select>
 
                   <div

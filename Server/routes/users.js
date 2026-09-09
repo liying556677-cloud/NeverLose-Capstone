@@ -13,5 +13,6 @@ router.post("/login", userController.login);
 
 // Protected route
 router.get("/me", requireFirebaseAuth, userController.getCurrentUser);
+router.put("/me", requireFirebaseAuth, userController.updateCurrentUser);
 
 module.exports = router;

@@ -32,10 +32,20 @@ auth.onIdTokenChanged(async (user) => {
 // 🔐 Attach token to every request
 // -------------------------------
 axiosClient.interceptors.request.use(
-  (config) => {
-    if (currentToken) {
-      config.headers.Authorization = `Bearer ${currentToken}`;
+  async (config) => {
+    let token = currentToken;
+
+    // If token cache is not ready yet, get the token directly
+    // from the currently signed-in Firebase user.
+    if (!token && auth.currentUser) {
+      token = await auth.currentUser.getIdToken();
+      currentToken = token;
     }
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
     return config;
   },
   (error) => Promise.reject(error)
