@@ -164,6 +164,7 @@ function Dashboard() {
   <CustomButton
     variant="secondary"
     className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
+     onClick={() => navigate("/item-history")}
   >
     <i className="bi bi-clock-history"></i>
 

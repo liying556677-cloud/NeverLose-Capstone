@@ -7,6 +7,7 @@ import LoginPage from "../pages/LoginPage";
 import SignupPage from "../pages/SignupPage";
 import PublicScan from "../pages/PublicScan";
 import DashboardPage from "../pages/DashboardPage";
+import ItemHistoryPage from "../pages/ItemHistoryPage";
 import CreateItemPage from "../pages/CreateItemPage";
 import QRCodePage from "../pages/QRCodePage";
 import ReportListPage from "../pages/ReportListPage";
@@ -40,6 +41,7 @@ const AppRoutes = () => {
       {/* <PrivateRoute>Wrap it when backend is completely done</PrivateRoute> */}
       <Route path="/" element={<DashboardPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/item-history" element={<ItemHistoryPage />} />
       <Route path="/create-item" element={<CreateItemPage />} />
       <Route path="/label/:itemId" element={<QRCodePage />} />
       <Route path="/item-details/:id" element={<ItemDetailsPage />} />
