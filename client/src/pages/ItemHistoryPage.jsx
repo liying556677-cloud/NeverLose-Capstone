@@ -3,10 +3,10 @@ import itemApi from "../api/itemApi";
 import { AuthContext } from "../context/AuthContext";
 import { logApi } from "../api/logApi";
 import MainLayout from "../layouts/MainLayout/MainLayout";
-import { useNavigate } from "react-router-dom";
+
 
 const ItemHistoryPage = () => {
-  const navigate = useNavigate();
+  
   const { user, loading: authLoading } = useContext(AuthContext);
 
   const [recoveredItems, setRecoveredItems] = useState([]);
@@ -89,24 +89,16 @@ setRecoveredItems(recoveredWithDates);
    <MainLayout username={user?.displayName || "User"}>
     <div className="px-4 pt-4">
 
-    <div className="d-flex justify-content-between align-items-center mb-4">
-      <div>
-        <h1 className="text-white fw-bold">Item History</h1>
-        
-        <button
-        className="btn btn-link text-white text-decoration-none p-0 opacity-hover"
-        onClick={() => navigate("/")}
-            >
-        <i className="bi bi-chevron-left"></i>
-        <span className="ms-1">Back</span>
-        </button>
-        </div>
+    
+      <div className="mb-4">
+      <h1 className="text-white fw-bold mb-1">
+       Item History
+       </h1>
 
-        <p className="text-white-50 mb-0">
-          View your recovered items here.
-        </p>
-      
-    </div>
+  <p className="text-white-50 mb-0">
+    View your recovered items here.
+  </p>
+</div>
 
     {recoveredItems.length === 0 ? (
       <div className="bg-white rounded-4 shadow-sm p-4">

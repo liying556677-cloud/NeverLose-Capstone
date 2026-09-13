@@ -1,1 +1,254 @@
+/* Entire logged-in application */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f7fb;
+}
 
+/* =========================
+   LEFT SIDEBAR
+   ========================= */
+
+.app-sidebar {
+  width: 240px;
+  min-height: 100vh;
+  height: 100vh;
+
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 28px 18px;
+
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+
+  position: sticky;
+  top: 0;
+
+  flex-shrink: 0;
+}
+
+/* NeverLose Logo */
+
+.sidebar-logo {
+  padding: 4px 12px 32px;
+  cursor: pointer;
+}
+
+.sidebar-logo img {
+  width: 165px;
+  height: auto;
+  display: block;
+}
+
+/* Navigation */
+
+.sidebar-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar-link {
+  width: 100%;
+
+  border: none;
+  background: transparent;
+
+  color: var(--nl-deep-blue);
+
+  text-align: left;
+
+  padding: 13px 16px;
+
+  border-radius: 12px;
+
+  font-size: 1.05rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: rgba(0, 209, 255, 0.08);
+  color: var(--nl-tech-blue);
+}
+
+.sidebar-link-active {
+  background-color: rgba(0, 209, 255, 0.12);
+  color: var(--nl-tech-blue);
+  font-weight: 600;
+}
+
+/* =========================
+   RIGHT SIDE
+   ========================= */
+
+.app-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Profile area in top-right */
+
+.app-topbar {
+  height: 82px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 32px;
+
+  background-color: white;
+
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Username + avatar */
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: none;
+  background: transparent;
+
+  color: var(--nl-deep-blue);
+
+  font-size: 0.95rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  padding: 6px 8px;
+
+  border-radius: 12px;
+}
+
+.topbar-user:hover {
+  background-color: rgba(0, 209, 255, 0.08);
+}
+
+.topbar-avatar {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+
+  background-color: var(--nl-deep-blue);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.topbar-avatar img {
+  width: 78%;
+  height: 78%;
+}
+
+/* Three-dot dropdown */
+
+.topbar-menu-button {
+  border: none !important;
+  box-shadow: none !important;
+
+  background: transparent !important;
+
+  color: var(--nl-deep-blue) !important;
+
+  font-size: 1.25rem;
+
+  padding: 6px 8px !important;
+
+  text-decoration: none !important;
+}
+
+.topbar-menu-button::after {
+  display: none;
+}
+
+/* =========================
+   PAGE CONTENT
+   ========================= */
+
+.app-content {
+  margin: 24px;
+  padding: 38px 44px;
+
+  border-radius: 24px;
+
+  background-color: var(--nl-deep-blue);
+
+  min-height: 520px;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 767.98px) {
+  .app-sidebar {
+    width: 170px;
+    padding: 20px 10px;
+  }
+
+  .sidebar-logo img {
+    width: 135px;
+  }
+
+  .sidebar-link {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .app-topbar {
+    padding: 0 16px;
+  }
+
+  .app-content {
+    margin: 12px;
+    padding: 16px;
+  }
+}
+
+.app-page {
+  min-height: 100vh;
+  background-color: #f5f7fb;
+}
+
+.dashboard-summary-card {
+  background-color: white;
+
+  min-height: 125px;
+
+  padding: 24px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.dashboard-summary-card p {
+  margin-bottom: 10px;
+
+  color: #6c757d;
+
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.dashboard-summary-card h2 {
+  margin-bottom: 0;
+
+  color: var(--nl-deep-blue);
+
+  font-size: 2rem;
+  font-weight: 700;
+}

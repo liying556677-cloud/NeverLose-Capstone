@@ -35,6 +35,9 @@ function ProfilePage() {
 
     const loadProfile = async () => {
       try {
+        setLoading(true);
+        setError("");
+
         const response = await userApi.me();
 
         setProfile(response.data);
@@ -42,7 +45,8 @@ function ProfilePage() {
         setFormData({
           name: response.data.name || "",
           phone: response.data.phone || "",
-          contactPreference: response.data.contactPreference || "",
+          contactPreference:
+            response.data.contactPreference || "",
         });
       } catch (err) {
         console.error("Load profile error:", err);
@@ -66,18 +70,41 @@ function ProfilePage() {
   };
 
   const handleSave = async () => {
-  try {
-    const response = await userApi.updateProfile(formData);
+    try {
+      setError("");
 
-    setProfile(response.data);
+      const response =
+        await userApi.updateProfile(formData);
 
+      setProfile(response.data);
+
+      setFormData({
+        name: response.data.name || "",
+        phone: response.data.phone || "",
+        contactPreference:
+          response.data.contactPreference || "",
+      });
+
+      setIsEditing(false);
+    } catch (err) {
+      console.error("Update profile error:", err);
+
+      setError("Unable to update profile.");
+    }
+  };
+
+  const handleCancel = () => {
     setIsEditing(false);
-  } catch (err) {
-    console.error("Update profile error:", err);
 
-    setError("Unable to update profile.");
-  }
-};
+    setFormData({
+      name: profile?.name || "",
+      phone: profile?.phone || "",
+      contactPreference:
+        profile?.contactPreference || "",
+    });
+
+    setError("");
+  };
 
   if (authLoading || loading) {
     return <LoadingSpinner />;
@@ -91,7 +118,7 @@ function ProfilePage() {
     );
   }
 
-  if (error) {
+  if (error && !profile) {
     return (
       <div className="text-white text-center mt-5">
         {error}
@@ -100,107 +127,165 @@ function ProfilePage() {
   }
 
   return (
-    <MainLayout username={profile?.name || user?.displayName || "User"}>
-      <div className="container py-4">
-        <h2 className="text-white fw-bold mb-4">
-          My Profile
-        </h2>
+    <MainLayout
+      username={
+        profile?.name ||
+        user?.displayName ||
+        "User"
+      }
+    >
+      <div
+        className="container-fluid"
+        style={{ maxWidth: "1200px" }}
+      >
+        {/* Page Header */}
+        <div className="mb-4">
+          <h1 className="text-white fw-bold mb-1">
+            My Profile
+          </h1>
 
-        <div className="card p-4 shadow-sm">
+          <p className="text-white-50 mb-0">
+            Manage your personal information.
+          </p>
+        </div>
 
-          <div className="mb-3">
-            <strong>Name</strong>
+        {/* Update Error */}
+        {error && (
+          <div className="alert alert-danger mb-4">
+            {error}
+          </div>
+        )}
+
+        {/* Profile Card */}
+        <div className="bg-white rounded-4 p-4 p-md-5 shadow-sm">
+
+          {/* Name */}
+          <div className="mb-4">
+            <label className="fw-semibold text-secondary mb-2 d-block">
+              Name
+            </label>
 
             {isEditing ? (
               <input
                 type="text"
                 name="name"
-                className="form-control mt-1"
+                className="form-control"
                 value={formData.name}
                 onChange={handleChange}
               />
             ) : (
-              <div>{profile?.name || "Not provided"}</div>
+              <p className="mb-0">
+                {profile?.name || "Not provided"}
+              </p>
             )}
           </div>
 
-          <div className="mb-3">
-            <strong>Email</strong>
+          {/* Email */}
+          <div className="mb-4">
+            <label className="fw-semibold text-secondary mb-2 d-block">
+              Email
+            </label>
 
-            <div>
-              {profile?.email || user?.email || "Not provided"}
-            </div>
+            <p className="mb-0">
+              {profile?.email ||
+                user?.email ||
+                "Not provided"}
+            </p>
+
+            {isEditing && (
+              <small className="text-muted">
+                Email cannot be changed here.
+              </small>
+            )}
           </div>
 
-          <div className="mb-3">
-            <strong>Phone Number</strong>
+          {/* Phone */}
+          <div className="mb-4">
+            <label className="fw-semibold text-secondary mb-2 d-block">
+              Phone Number
+            </label>
 
             {isEditing ? (
               <input
                 type="text"
                 name="phone"
-                className="form-control mt-1"
+                className="form-control"
                 value={formData.phone}
                 onChange={handleChange}
               />
             ) : (
-              <div>{profile?.phone || "Not provided"}</div>
+              <p className="mb-0">
+                {profile?.phone || "Not provided"}
+              </p>
             )}
           </div>
 
-          <div className="mb-3">
-            <strong>Contact Preference</strong>
+          {/* Contact Preference */}
+          <div className="mb-4">
+            <label className="fw-semibold text-secondary mb-2 d-block">
+              Contact Preference
+            </label>
 
             {isEditing ? (
               <select
                 name="contactPreference"
-                className="form-select mt-1"
+                className="form-select"
                 value={formData.contactPreference}
                 onChange={handleChange}
               >
-                <option value="">Select preference</option>
-                <option value="Email">Email</option>
-                <option value="Phone">Phone</option>
+                <option value="">
+                  Select preference
+                </option>
+
+                <option value="Email">
+                  Email
+                </option>
+
+                <option value="Phone">
+                  Phone
+                </option>
               </select>
             ) : (
-              <div>
-                {profile?.contactPreference || "Not provided"}
-              </div>
+              <p className="mb-0">
+                {profile?.contactPreference ||
+                  "Not provided"}
+              </p>
             )}
           </div>
 
+          {/* Buttons */}
           {!isEditing ? (
-            <button
-              className="btn btn-primary"
-              onClick={() => setIsEditing(true)}
-            >
-              Edit Profile
-            </button>
-          ) : (
-            <div className="d-flex gap-2">
+            <div className="d-flex justify-content-end pt-2">
               <button
-                className="btn btn-secondary"
+                type="button"
+                className="btn btn-danger px-4 py-2"
                 onClick={() => {
-                  setIsEditing(false);
-
-                  setFormData({
-                    name: profile?.name || "",
-                    phone: profile?.phone || "",
-                    contactPreference:
-                      profile?.contactPreference || "",
-                  });
+                  setIsEditing(true);
+                  setError("");
                 }}
+              >
+                Edit Profile
+              </button>
+            </div>
+          ) : (
+            <div className="d-flex justify-content-end gap-2 pt-2">
+
+              <button
+                type="button"
+                className="btn btn-outline-secondary px-4 py-2"
+                onClick={handleCancel}
               >
                 Cancel
               </button>
 
-              <button 
-               className="btn btn-success"
-               onClick={handleSave}
-               >
+              <button
+                type="button"
+                className="btn btn-danger px-4 py-2"
+                onClick={handleSave}
+              >
                 Save Changes
-            </button>
-            
+              </button>
+
             </div>
           )}
 

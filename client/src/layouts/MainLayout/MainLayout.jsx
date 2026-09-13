@@ -1,99 +1,164 @@
 import React, { useContext } from "react";
-import { Container, Row, Col, Dropdown } from "react-bootstrap";
+import { Dropdown } from "react-bootstrap";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import { AuthContext } from "../../context/AuthContext";
+
 import logoWide from "../../assets/Neverlose-Wide.svg";
-import Footer from "../../components/Landing/Footer";
-import "./MainLayout.css";
 import userIcon from "../../assets/avatar.svg";
-import { useNavigate } from "react-router-dom";
 
-const MainLayout = ({ children, username = "{UserName}" }) => {
+import Footer from "../../components/Landing/Footer";
+
+import "./MainLayout.css";
+
+const MainLayout = ({ children, username = "User" }) => {
   const navigate = useNavigate();
-  const { logout } = useContext(AuthContext);
-  const CustomToggle = React.forwardRef(({ onClick }, ref) => (
-    <div
-      ref={ref}
-      onClick={(e) => {
-        e.preventDefault();
-        onClick(e);
-      }}
-      className="rounded-circle d-flex align-items-center justify-content-center shadow-sm"
-      style={{
-        backgroundColor: "var(--nl-deep-blue)",
-        width: "40px",
-        height: "40px",
-        cursor: "pointer",
-      }}
-    >
-      <img src={userIcon} alt="User" style={{ width: "79%", height: "79%" }} />
-    </div>
-  ));
+  const location = useLocation();
 
-  const handleHome = () => navigate("/dashboard");
+  const { logout } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+  try {
+    navigate("/home");
+    await logout();
+    navigate("/home");
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+};
+
+  const menuItems = [
+  {
+    label: "Dashboard",
+    path: "/",
+  },
+  {
+    label: "My Secure Tags",
+    path: "/my-secure-tags",
+  },
+  {
+    label: "My Group",
+    path: "/my-group",
+  },
+  {
+    label: "Finder Reports",
+    path: "/finder-reports",
+  },
+  {
+    label: "Item History",
+    path: "/item-history",
+  },
+  {
+    label: "My Profile",
+    path: "/profile",
+  },
+];
 
   return (
-    <Container fluid className="mt-2 mt-md-4 px-2 px-md-4">
-      <div className="bg-white rounded-4 shadow-sm p-3 p-md-4">
-        <Row className="align-items-center mb-3 mb-md-4 g-2">
-          <Col xs={5} md={6}>
-            <div className="d-flex align-items-center">
-              <img
-                alt="Neverlose Logo"
-                src={logoWide}
-                height="40"
-                className="img-fluid"
-                onClick={handleHome}
-                style={{ cursor: "pointer", height: "clamp(30px, 5vw, 40px)" }}
-              />
-            </div>
-          </Col>
+  <div className="app-page">
 
-          {/* User Info & Dropdown */}
-          <Col
-            xs={7}
-            md={6}
-            className="d-flex align-items-center justify-content-end"
+    <div className="app-layout">
+
+      {/* Left Sidebar */}
+      <aside className="app-sidebar">
+
+        <div
+          className="sidebar-logo"
+          onClick={() => navigate("/")}
+        >
+          <img
+            src={logoWide}
+            alt="Neverlose"
+          />
+        </div>
+
+        <nav className="sidebar-navigation">
+          {menuItems.map((item) => {
+            const isActive = location.pathname === item.path;
+
+            return (
+              <button
+                key={item.path}
+                className={`sidebar-link ${
+                  isActive ? "sidebar-link-active" : ""
+                }`}
+                onClick={() => navigate(item.path)}
+              >
+                {item.label}
+              </button>
+            );
+          })}
+
+          <button
+            className="sidebar-link"
+            onClick={handleLogout}
           >
-            <span className="me-2 me-md-3 fw-medium text-secondary d-none d-sm-block">
-              Hi, {username}
-            </span>
+            Log out
+          </button>
+        </nav>
+
+      </aside>
+
+      {/* Right Side */}
+      <div className="app-main">
+
+        <div className="app-topbar">
+          <div className="ms-auto d-flex align-items-center gap-2">
+
+            <button
+              className="topbar-user"
+              onClick={() => navigate("/profile")}
+            >
+              <span>{username}</span>
+
+              <div className="topbar-avatar">
+                <img
+                  src={userIcon}
+                  alt="User"
+                />
+              </div>
+            </button>
 
             <Dropdown align="end">
               <Dropdown.Toggle
-                as={CustomToggle}
-                id="dropdown-custom-components"
-              />
-
-              <Dropdown.Menu
-                className="shadow border-0"
-                style={{ minWidth: "35px" }}
+                variant="link"
+                className="topbar-menu-button"
               >
+                ⋮
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu className="shadow border-0">
                 <Dropdown.Item
-                  onClick={logout}
-                  className="text-primary fw-bold"
-                  style={{ fontSize: "14px" }}
+                  onClick={() => navigate("/profile")}
                 >
-                  <i className="bi bi-box-arrow-right"></i> Log out
+                  My Profile
+                </Dropdown.Item>
+
+                <Dropdown.Item
+                  onClick={handleLogout}
+                  className="text-primary fw-bold"
+                >
+                  Log out
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          </Col>
-        </Row>
 
-        <div
-          className="rounded-4 p-2 p-md-4 flex-column"
-          style={{
-            backgroundColor: "var(--nl-deep-blue)",
-            // minHeight: "calc(100vh - 150px)",
-            transition: "all 0.3s ease",
-          }}
-        >
-          {children}
-          <Footer />
+          </div>
         </div>
+
+        <main className="app-content">
+          {children}
+        </main>
+
       </div>
-    </Container>
-  );
+
+    </div>
+
+    {/* Full-width Footer */}
+    <Footer />
+
+  </div>
+);
 };
 
 export default MainLayout;

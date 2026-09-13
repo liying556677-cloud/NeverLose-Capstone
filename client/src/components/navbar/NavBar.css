@@ -74,3 +74,8 @@
     height: 30px;
   }
 }
+
+.active-nav-link {
+  background-color: rgba(0, 209, 255, 0.08);
+  color: var(--nl-tech-blue);
+}

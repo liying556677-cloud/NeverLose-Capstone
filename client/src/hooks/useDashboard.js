@@ -109,6 +109,9 @@ export const useDashboard = () => {
 
   return {
     items: pagedItems,
+
+    allItems: itemsWithReports,
+    
     loading: loading || authLoading,
     error,
 

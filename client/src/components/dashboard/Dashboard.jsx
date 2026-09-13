@@ -8,10 +8,12 @@ import WelcomeState from "../welcomeState/WelcomeState";
 import CustomButton from "../CustomButton/CustomButton";
 import LoadingSpinner from "../loadingSpinner/LoadingSpinner";
 
+
 function Dashboard() {
   const {
-    items,
+    allItems,
     loading: itemsLoading,
+     
 
     // Paging
     page,
@@ -34,6 +36,7 @@ function Dashboard() {
     handleCreate,
     handleItemDetails,
     handleReportsList,
+    
   } = useDashboard();
 
   const { user, loading: authLoading } = useContext(AuthContext);
@@ -55,177 +58,81 @@ function Dashboard() {
   if (!user) return null;
 
   return (
-    <MainLayout username={user?.displayName || "User"}>
-      
-        {/* Dashboard navigation */}
-        <div className="container py-4">
-
-    <h2 className="text-white fw-bold mb-4">
-        Dashboard
-    </h2>
-
-    <div className="row g-3 mb-4">
-
-      <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
-
-        <div>
-          <h2
-          className="text-white fw-bold my-2"
-          style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
-          >
-            My Profile
-          </h2>
-
-    <p className="text-white-50 mb-0">
-      View and update your personal information.
-    </p>
-        </div>
-
-  <CustomButton
-    variant="secondary"
-    onClick={() => navigate("/profile")}
-    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
-  >
-    <i className="bi bi-pencil"></i>
-
-    <span className="d-none d-sm-inline fw-semibold">
-      Edit Profile
-    </span>
-  </CustomButton>
-
-</div>
-
-    <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
-  <div>
-    <h2
-      className="text-white fw-bold my-2"
-      style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
+  <MainLayout username={user?.displayName || "User"}>
+    <div
+    className="container-fluid"
+    style={{ maxWidth: "1250px" }}
     >
-      My Group
-    </h2>
+
+      {/* Page Title */}
+      <div className="d-flex justify-content-between align-items-start mb-4">
+  <div>
+    <h1 className="text-white fw-bold mb-2">
+      Dashboard
+    </h1>
 
     <p className="text-white-50 mb-0">
-      Manage shared item groups.
+      Welcome back, {user?.displayName || "User"}!
+      Here's an overview of your NeverLose items.
     </p>
   </div>
 
   <CustomButton
-    variant="secondary"
-    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
-  >
-    <i className="bi bi-people"></i>
-
-    <span className="d-none d-sm-inline fw-semibold">
-      Manage Group
-    </span>
-  </CustomButton>
+  variant="secondary"
+  onClick={handleCreate}
+  className="px-4 py-2 fw-semibold"
+>
+  + Add Item
+</CustomButton>
 </div>
 
-    <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
-  <div>
-    <h2
-      className="text-white fw-bold my-2"
-      style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
-    >
-      Finder Reports
-    </h2>
+      {/* Overview Cards */}
+      <div className="row g-4">
 
-    <p className="text-white-50 mb-0">
-      Review reports submitted for your items.
-    </p>
+  <div className="col-6 col-lg-3">
+    <div className="dashboard-summary-card">
+      <p>Total Items</p>
+      <h2>{allItems?.length || 0}</h2>
+    </div>
   </div>
 
-  <CustomButton
-    variant="secondary"
-    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
-  >
-    <i className="bi bi-file-earmark-text"></i>
-
-    <span className="d-none d-sm-inline fw-semibold">
-      View Reports
-    </span>
-  </CustomButton>
-</div>
-
-    <div className="d-flex justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
-  <div>
-    <h2
-      className="text-white fw-bold my-2"
-      style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
-    >
-      Item History
-    </h2>
-
-    <p className="text-white-50 mb-0">
-      View recovered and archived items.
-    </p>
+  <div className="col-6 col-lg-3">
+    <div className="dashboard-summary-card">
+      <p>Lost</p>
+      <h2>
+        {allItems?.filter(
+          (item) => item.status === "LOST"
+        ).length || 0}
+      </h2>
+    </div>
   </div>
 
-  <CustomButton
-    variant="secondary"
-    className="d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
-     onClick={() => navigate("/item-history")}
-  >
-    <i className="bi bi-clock-history"></i>
+  <div className="col-6 col-lg-3">
+    <div className="dashboard-summary-card">
+      <p>Safe</p>
+      <h2>
+        {allItems?.filter(
+          (item) => item.status === "SAFE"
+        ).length || 0}
+      </h2>
+    </div>
+  </div>
 
-    <span className="d-none d-sm-inline fw-semibold">
-      View History
-    </span>
-  </CustomButton>
+  <div className="col-6 col-lg-3">
+    <div className="dashboard-summary-card">
+      <p>Recovered</p>
+      <h2>
+        {allItems?.filter(
+          (item) => item.status === "RECOVERED"
+        ).length || 0}
+      </h2>
+    </div>
+  </div>
+
 </div>
 </div>
-
-
-        {itemsLoading ? (
-          <LoadingSpinner />
-        ) : !items || items.length === 0 ? (
-          <WelcomeState onCreateClick={handleCreate} />
-        ) : (
-          <>
-            {/* Header with title, back navigation */}
-            <div className="d-flex flex-row justify-content-between align-items-center py-2 pb-3 pb-md-4 px-2">
-              <h2
-                className="text-white fw-bold my-2"
-                style={{ fontSize: "calc(1.2rem + 0.5vw)" }}
-              >
-                My Secure Tags
-              </h2>
-
-              <CustomButton
-                onClick={handleCreate}
-                className="btn-red d-flex align-items-center gap-2 shadow-sm border-0 p-2 px-md-4 py-md-2"
-              >
-                <i className="bi bi-plus-lg fw-bold"></i>
-                <span className="d-none d-sm-inline fw-semibold">Add Item</span>
-              </CustomButton>
-            </div>
-
-            {/* Items List */}
-            <ItemsList
-              items={items}
-              // Paging
-              page={page}
-              totalPages={totalPages}
-              setPage={setPage}
-              // Filters
-              search={search}
-              setSearch={setSearch}
-              statusFilter={statusFilter}
-              setStatusFilter={setStatusFilter}
-              // Sorting
-              sortField={sortField}
-              setSortField={setSortField}
-              sortDirection={sortDirection}
-              setSortDirection={setSortDirection}
-              // Navigation
-              onItemDetails={handleItemDetails}
-              onReportsList={handleReportsList}
-            />
-          </>
-        )}
-      </div>
-    </MainLayout>
-  );
+  </MainLayout>
+);
 }
 
 export default Dashboard;

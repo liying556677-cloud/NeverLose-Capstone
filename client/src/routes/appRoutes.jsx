@@ -18,6 +18,7 @@ import LandingPage from "../pages/LandingPage";
 import HowItWork from "../pages/HowItWork";
 import Features from "../pages/features";
 import GenericErrorPage from "../pages/GenericErrorPage";
+import MySecureTagsPage from "../pages/MySecureTagsPage";
 // PrivateRoute Component: If the user is not authenticated, it redirects them to the login page using the Navigate component
 function PrivateRoute({ children }) {
   const { user, loading } = useContext(AuthContext);
@@ -42,13 +43,14 @@ const AppRoutes = () => {
       <Route path="/" element={<DashboardPage />} />
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/item-history" element={<ItemHistoryPage />} />
+      <Route path="/my-secure-tags" element={<MySecureTagsPage />} />
       <Route path="/create-item" element={<CreateItemPage />} />
       <Route path="/label/:itemId" element={<QRCodePage />} />
       <Route path="/item-details/:id" element={<ItemDetailsPage />} />
       <Route path="/item-reports/:id" element={<ReportListPage />} />
-<Route path="/how-it-works" element={<HowItWork/>}/>
-<Route path="/features" element={<Features/>}/>
-<Route path="/edit-item/:id" element={<EditItemPage />} />
+      <Route path="/how-it-works" element={<HowItWork/>}/>
+      <Route path="/features" element={<Features/>}/>
+      <Route path="/edit-item/:id" element={<EditItemPage />} />
       {/* Default redirection - if the path does not exist */}
       <Route path="*" element={<Navigate to="/" replace />} />
       <Route path="/error" element={<GenericErrorPage />} />
